@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { increaseCounterAction } from "./modules/counter";
+import "./styles.css";
 
-function App() {
+const Counter1 = () => {
+  const dispatch = useDispatch();
+  const counterState = useSelector((state) => state.counter);
+  return (
+    <>
+      <p>current: {counterState}</p>
+      <button onClick={() => dispatch(increaseCounterAction())}>
+        INCREMENT
+      </button>
+    </>
+  );
+};
+
+// const Counter2 = () => {
+//   const [counterState, setCounterState] = useState(0);
+//   return (
+//     <>
+//       <p>current: {counterState}</p>
+//       <button onClick={() => setCounterState(counterState + 1)}>
+//         INCREMENT
+//       </button>
+//     </>
+//   );
+// };
+
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter1 />
+      {/* <Counter2 /> */}
     </div>
   );
 }
-
-export default App;
